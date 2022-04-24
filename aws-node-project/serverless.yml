@@ -1,0 +1,32 @@
+service: aws-node-project
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: 
+          - "ses:*"
+          Resource:
+          - "*"
+
+
+#functions:
+#  arpit:
+#    handler: handler.arpit
+#    events:
+#    - http:
+#        path: /data
+#       method: GET
+
+functions:
+  createContact:
+    handler: handler.createContact
+    events:
+    - http:
+        path: /mail
+        method: POST
